@@ -2,19 +2,25 @@
 <a href="https://angular.io/tutorial/toh-pt2#style-the-heroes">Current stage</a>
 <h2>My Heroes</h2>
 <ul class="heroes">
-  <li *ngFor="let hero of heroes">
+  <li
+    *ngFor="let hero of heroes"
+    class="hero-item"
+    (click)="onSelect(hero)"
+    [class.selected]="hero === selectedHero"
+  >
     <span>{{hero.id}} {{hero.name}}</span>
   </li>
 </ul>
 
-<h2>{{ hero.name | uppercase}} Details</h2>
-
-<div>
-  id: {{ hero.id }}
-</div>
-<div>name: {{hero.name}}</div>
-<div>
-  <label>name:
-    <input type="text" placeholder="name" [(ngModel)]="hero.name">
-  </label>
+<div *ngIf="selectedHero">
+  <h2>{{ selectedHero.name | uppercase}} Details</h2>
+  <div>
+    id: {{ selectedHero.id }}
+  </div>
+  <div>name: {{selectedHero.name}}</div>
+  <div>
+    <label>name:
+      <input type="text" placeholder="name" [(ngModel)]="selectedHero.name">
+    </label>
+  </div>
 </div>
